@@ -111,7 +111,7 @@ return [
             'store-stats'                 => 'Store Stats',
             'title'                       => 'Dashboard',
             'to'                          => 'To',
-            'today-customers'             => 'Today’s Customers',
+            'today-customers'             => 'Today\'s Customers',
             'today-details'               => 'Today’s Details',
             'today-orders'                => 'Today’s Orders',
             'today-sales'                 => 'Today’s Sales',
@@ -5132,5 +5132,9 @@ return [
             'tax'                        => 'Tax',
             'tracking-number'            => 'Tracking Number : :tracking_number',
         ],
+    ],
+
+    'herd-analytics' => [
+        'title' => 'Herd Analytics',
     ],
 ];

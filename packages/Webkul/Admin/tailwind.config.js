@@ -44,6 +44,27 @@ module.exports = {
     safelist: [
         {
             pattern: /icon-/,
-        }
+        },
+        {
+            pattern: /bg-(green|orange|red|blue|cyan)-(50|100|500|600|700|900)/,
+        },
+        {
+            pattern: /text-(green|orange|red|blue|cyan)-(400|500|600|700|900)/,
+        },
+        {
+            pattern: /ring-(green|orange|red|blue|cyan)-(100|200|600|800)/,
+        },
+        {
+            pattern: /ring-(green|orange|red|blue|cyan)-600\/20/,
+        },
+        {
+            pattern: /ring-(green|orange|red|blue|cyan)-800\/30/,
+        },
+        {
+            pattern: /dark:bg-(green|orange|red|blue|cyan)-900\/30/,
+        },
+        {
+            pattern: /dark:text-(green|orange|red|blue|cyan)-400/,
+        },
     ]
 };

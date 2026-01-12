@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Webkul\Admin\Http\Controllers\HerdAnalyticsController;
 use Webkul\Core\Http\Middleware\NoCacheMiddleware;
 
 /**
@@ -53,6 +54,11 @@ Route::group(['middleware' => ['admin', NoCacheMiddleware::class], 'prefix' => c
      * Notification routes.
      */
     require 'notification-routes.php';
+
+    /**
+     * Herd Analytics routes.
+     */
+    Route::get('herd-analytics', [HerdAnalyticsController::class, 'index'])->name('admin.herd-analytics.index');
 
     /**
      * Remaining routes.
