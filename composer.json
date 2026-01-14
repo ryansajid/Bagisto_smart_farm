@@ -19,6 +19,7 @@
         "ext-tokenizer": "*",
         "astrotomic/laravel-translatable": "^11.0.0",
         "bagisto/image-cache": "dev-master",
+        "bagistoplus/visual-debut": "^2.0",
         "barryvdh/laravel-dompdf": "^2.0.0",
         "diglactic/laravel-breadcrumbs": "^9.0",
         "elasticsearch/elasticsearch": "^8.10",
@@ -126,13 +127,13 @@
             ]
         }
     },
-    "repositories": [{
-        "type": "path",
-        "url": "packages/*/*",
-        "options": {
-            "symlink": true
-        }
-    }],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/bagistoplus/visual"
+    }
+     ],
+
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -142,7 +143,7 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
         "issues": "https://github.com/bagisto/bagisto/issues",
