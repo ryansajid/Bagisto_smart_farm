@@ -25,12 +25,11 @@
             "type": "@visual-debut/header",
             "name": null,
             "properties": {
-                "content_width": "fullwidth"
+                "content_width": "container"
             },
             "parentId": null,
             "children": [
                 "container-logo_9d7fa7a3",
-                "container-nav_186ca83a",
                 "container-actions_8ad895b5"
             ],
             "disabled": false,
@@ -46,51 +45,85 @@
             "type": "@visual-debut/group",
             "name": "Logo",
             "properties": {
-                "layout_type": "flex",
-                "flex_direction": "row",
-                "vertical_justify_content": null,
-                "vertical_align_items": null,
-                "horizontal_justify_content": null,
-                "horizontal_align_items": null,
-                "flex_gap": 4,
-                "color_scheme": null,
-                "grid_columns": 3,
-                "grid_rows": "auto",
-                "grid_gap": 4,
-                "padding": null,
-                "margin": null,
-                "width": "auto",
-                "custom_width": 100,
-                "min_width": 0,
-                "max_width": "none",
-                "height": "auto",
-                "custom_height": 400,
-                "min_height": 0,
-                "border": false,
-                "border_width": 1,
+                "layout_type": "block",
+                "flex_direction": {
+                    "_default": "row"
+                },
+                "vertical_justify_content": {
+                    "_default": "center"
+                },
+                "vertical_align_items": {
+                    "_default": "start"
+                },
+                "horizontal_justify_content": {
+                    "_default": "center"
+                },
+                "horizontal_align_items": {
+                    "_default": "center"
+                },
+                "flex_gap": {
+                    "_default": 1
+                },
+                "color_scheme": "default",
+                "grid_columns": {
+                    "_default": 4
+                },
+                "grid_rows": 1,
+                "grid_gap": {
+                    "_default": 9
+                },
+                "padding": {
+                    "_default": {
+                        "top": 5,
+                        "right": 5,
+                        "bottom": 5,
+                        "left": 5
+                    }
+                },
+                "margin": {
+                    "_default": {
+                        "top": 0,
+                        "right": 0,
+                        "bottom": 0,
+                        "left": 0
+                    }
+                },
+                "width": {
+                    "_default": "custom"
+                },
+                "custom_width": {
+                    "_default": 12
+                },
+                "min_width": 190,
+                "max_width": "xs",
+                "height": "custom",
+                "custom_height": 40,
+                "min_height": 60,
+                "border": true,
+                "border_width": 5,
                 "border_style": "solid",
                 "border_color": "currentColor",
                 "border_opacity": 100,
                 "border_radius": "none",
-                "background_type": "none",
+                "background_type": "image",
                 "background_color": "rgba(0, 0, 0, 0)",
                 "background_gradient": null,
                 "background_image": null,
                 "background_position": "center",
                 "background_size": "cover",
                 "background_repeat": "no-repeat",
-                "is_overlay": false,
+                "is_overlay": true,
                 "overlay_visibility": "always",
                 "overlay_hover_target": "parent",
-                "z_index": 10,
-                "position": "static",
+                "z_index": 17,
+                "position": "fixed",
                 "gap": {
                     "_default": 4
                 }
             },
             "parentId": "main-header",
             "children": [
-                "visual_debut_logo_0_8343267e_90ba2223"
+                "f3a1fbfb-3162-4d30-872f-b42c10889fe6"
             ],
             "disabled": false,
             "static": false,
@@ -99,66 +132,6 @@
             "semanticId": null,
             "index": 0,
             "iteration": 1
-        },
-        "container-nav_186ca83a": {
-            "id": "container-nav_186ca83a",
-            "type": "@visual-debut/group",
-            "name": "Navigation",
-            "properties": {
-                "layout_type": "flex",
-                "flex_direction": "row",
-                "vertical_justify_content": null,
-                "vertical_align_items": null,
-                "horizontal_justify_content": null,
-                "horizontal_align_items": null,
-                "flex_gap": 4,
-                "color_scheme": null,
-                "grid_columns": 3,
-                "grid_rows": "auto",
-                "grid_gap": 4,
-                "padding": null,
-                "margin": null,
-                "width": "full",
-                "custom_width": 100,
-                "min_width": 0,
-                "max_width": "none",
-                "height": "auto",
-                "custom_height": 400,
-                "min_height": 0,
-                "border": false,
-                "border_width": 1,
-                "border_style": "solid",
-                "border_color": "currentColor",
-                "border_opacity": 100,
-                "border_radius": "none",
-                "background_type": "none",
-                "background_color": "rgba(0, 0, 0, 0)",
-                "background_gradient": null,
-                "background_image": null,
-                "background_position": "center",
-                "background_size": "cover",
-                "background_repeat": "no-repeat",
-                "is_overlay": false,
-                "overlay_visibility": "always",
-                "overlay_hover_target": "parent",
-                "z_index": 10,
-                "position": "static",
-                "justify_content": "start",
-                "gap": {
-                    "_default": 4
-                }
-            },
-            "parentId": "main-header",
-            "children": [
-                "navigation_19f9ec69"
-            ],
-            "disabled": false,
-            "static": false,
-            "repeated": false,
-            "ghost": false,
-            "semanticId": null,
-            "index": 1,
-            "iteration": 2
         },
         "container-actions_8ad895b5": {
             "id": "container-actions_8ad895b5",
@@ -222,33 +195,18 @@
             "repeated": false,
             "ghost": false,
             "semanticId": null,
-            "index": 2,
-            "iteration": 3
+            "index": 1,
+            "iteration": 2
         },
-        "visual_debut_logo_0_8343267e_90ba2223": {
-            "id": "visual_debut_logo_0_8343267e_90ba2223",
+        "f3a1fbfb-3162-4d30-872f-b42c10889fe6": {
+            "id": "f3a1fbfb-3162-4d30-872f-b42c10889fe6",
             "type": "@visual-debut/logo",
             "name": "Logo",
             "properties": {
                 "logo_text": null,
-                "color_scheme": null
+                "color_scheme": "cupcake"
             },
             "parentId": "container-logo_9d7fa7a3",
-            "children": [],
-            "disabled": false,
-            "static": false,
-            "repeated": false,
-            "ghost": false,
-            "semanticId": null,
-            "index": 0,
-            "iteration": 1
-        },
-        "navigation_19f9ec69": {
-            "id": "navigation_19f9ec69",
-            "type": "@visual-debut/header-nav",
-            "name": "Navigation",
-            "properties": [],
-            "parentId": "container-nav_186ca83a",
             "children": [],
             "disabled": false,
             "static": false,
