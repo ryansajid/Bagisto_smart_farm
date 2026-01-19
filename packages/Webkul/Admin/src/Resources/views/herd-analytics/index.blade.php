@@ -17,6 +17,170 @@
         </div>
     </div>
 
+    <!-- Input Form -->
+    <div class="mb-8">
+        <div class="box-shadow rounded-2xl bg-white p-6 dark:bg-gray-900">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Record Herd Data</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Enter daily metrics for individual animals</p>
+            </div>
+
+            <form action="{{ route('admin.herd-analytics.store') }}" method="POST" class="space-y-6">
+                @csrf
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Animal ID -->
+                    <div>
+                        <label for="herd_id" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Animal ID
+                        </label>
+                        <input
+                            type="text"
+                            id="herd_id"
+                            name="herd_id"
+                            required
+                            placeholder="e.g., COW-001"
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                        @error('herd_id')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Breed Type -->
+                    <div>
+                        <label for="breed_type" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Breed Type
+                        </label>
+                        <select
+                            id="breed_type"
+                            name="breed_type"
+                            required
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                            <option value="">Select Breed</option>
+                            <option value="Holstein">Holstein</option>
+                            <option value="Jersey">Jersey</option>
+                            <option value="Guernsey">Guernsey</option>
+                            <option value="Ayrshire">Ayrshire</option>
+                            <option value="Brown Swiss">Brown Swiss</option>
+                            <option value="Milking Shorthorn">Milking Shorthorn</option>
+                            <option value="Dutch Belted">Dutch Belted</option>
+                            <option value="Red Poll">Red Poll</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        @error('breed_type')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Date -->
+                    <div>
+                        <label for="date" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Date
+                        </label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                            value="{{ old('date', now()->format('Y-m-d')) }}"
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                        @error('date')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Milk Collected -->
+                    <div>
+                        <label for="milk_production" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Milk Collected (Liters)
+                        </label>
+                        <input
+                            type="number"
+                            id="milk_production"
+                            name="milk_production"
+                            required
+                            min="0"
+                            step="0.1"
+                            placeholder="e.g., 32.5"
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                        @error('milk_production')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Weight Gain -->
+                    <div>
+                        <label for="weight_gain" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Weight Gain (kg/day)
+                        </label>
+                        <input
+                            type="number"
+                            id="weight_gain"
+                            name="weight_gain"
+                            step="0.01"
+                            placeholder="e.g., 1.8"
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                        @error('weight_gain')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Health Status -->
+                    <div>
+                        <label for="health_status" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Health Status
+                        </label>
+                        <select
+                            id="health_status"
+                            name="health_status"
+                            required
+                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                        >
+                            <option value="">Select Status</option>
+                            <option value="healthy">Healthy</option>
+                            <option value="at-risk">At Risk</option>
+                            <option value="sick">Sick</option>
+                        </select>
+                        @error('health_status')
+                            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button
+                        type="submit"
+                        class="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:from-blue-500 dark:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-700"
+                    >
+                        <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Record Data
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if(session('success'))
+        <div class="mb-6 rounded-lg bg-green-50 p-4 ring-1 ring-green-200 dark:bg-green-900/20 dark:ring-green-800">
+            <div class="flex items-center">
+                <svg class="h-5 w-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <p class="ml-3 text-sm font-medium text-green-800 dark:text-green-200">
+                    {{ session('success') }}
+                </p>
+            </div>
+        </div>
+    @endif
+
     <!-- Stat Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <!-- Overall Herd Health -->
@@ -95,6 +259,56 @@
         </div>
     </div>
 
+    <!-- Date Filter Section -->
+    <div class="mb-8">
+        <div class="box-shadow rounded-2xl bg-white p-6 dark:bg-gray-900">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Filter by Date</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Select month and year to view milk production data</p>
+            </div>
+
+            <form action="{{ route('admin.herd-analytics.index') }}" method="GET" class="flex flex-wrap items-end gap-4">
+                <!-- Month Dropdown -->
+                <div class="flex-1 min-w-[150px]">
+                    <label for="month" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Month
+                    </label>
+                    <select
+                        id="month"
+                        name="month"
+                        onchange="this.form.submit()"
+                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                    >
+                        @for($i = 1; $i <= 12; $i++)
+                            <option value="{{ $i }}" {{ $selectedMonth == $i ? 'selected' : '' }}>
+                                {{ \Carbon\Carbon::createFromDate(null, $i, 1)->format('F') }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
+
+                <!-- Year Dropdown -->
+                <div class="flex-1 min-w-[150px]">
+                    <label for="year" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Year
+                    </label>
+                    <select
+                        id="year"
+                        name="year"
+                        onchange="this.form.submit()"
+                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                    >
+                        @for($i = now()->year - 5; $i <= now()->year; $i++)
+                            <option value="{{ $i }}" {{ $selectedYear == $i ? 'selected' : '' }}>
+                                {{ $i }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Milk Production Chart -->
@@ -149,36 +363,36 @@
         @endphp
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div class="flex items-center gap-4 rounded-xl bg-green-50 p-4 ring-1 ring-green-100 dark:bg-green-900/10 dark:ring-green-800">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg shadow-green-500/30">
-                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-green-100 shadow-lg shadow-green-500/30 dark:from-green-400 dark:to-green-500 dark:shadow-green-400/40">
+                    <svg class="h-7 w-7 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
                 <div>
                     <div class="text-sm font-medium text-green-600 dark:text-green-400">Healthy</div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ $healthyCount }}</div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-green-300">{{ $healthyCount }}</div>
                 </div>
             </div>
             <div class="flex items-center gap-4 rounded-xl bg-orange-50 p-4 ring-1 ring-orange-100 dark:bg-orange-900/10 dark:ring-orange-800">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/30">
-                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-orange-100 shadow-lg shadow-orange-500/30 dark:from-orange-400 dark:to-orange-500 dark:shadow-orange-400/40">
+                    <svg class="h-7 w-7 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                 </div>
                 <div>
                     <div class="text-sm font-medium text-orange-600 dark:text-orange-400">At Risk</div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ $atRiskCount }}</div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-orange-300">{{ $atRiskCount }}</div>
                 </div>
             </div>
             <div class="flex items-center gap-4 rounded-xl bg-red-50 p-4 ring-1 ring-red-100 dark:bg-red-900/10 dark:ring-red-800">
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30">
-                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600 text-red-100 shadow-lg shadow-red-500/30 dark:from-red-400 dark:to-red-500 dark:shadow-red-400/40">
+                    <svg class="h-7 w-7 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </div>
                 <div>
                     <div class="text-sm font-medium text-red-600 dark:text-red-400">Sick</div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">{{ $sickCount }}</div>
+                    <div class="text-3xl font-bold text-gray-900 dark:text-red-300">{{ $sickCount }}</div>
                 </div>
             </div>
         </div>
@@ -186,91 +400,88 @@
 
     <!-- Individual Performance Table -->
     <div class="box-shadow rounded-2xl bg-white p-6 dark:bg-gray-900">
-        <div class="mb-6 flex items-center justify-between">
+        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Individual Performance</h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400">Detailed performance metrics per animal</p>
             </div>
+            <form action="{{ route('admin.herd-analytics.index') }}" method="GET" class="flex items-center gap-3">
+                <input
+                    type="text"
+                    name="search_animal_id"
+                    value="{{ $searchAnimalId ?? '' }}"
+                    placeholder="Search Animal ID..."
+                    class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                >
+                <button
+                    type="submit"
+                    class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-500 dark:hover:bg-blue-600"
+                >
+                    Search
+                </button>
+                @if($searchAnimalId)
+                    <a href="{{ route('admin.herd-analytics.index') }}" class="text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                    Clear
+                    </a>
+                @endif
+            </form>
         </div>
         <div class="overflow-x-auto rounded-xl ring-1 ring-gray-200 dark:ring-gray-800">
             <table class="w-full">
                 <thead>
                     <tr class="bg-gray-50 dark:bg-gray-800">
                         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Animal ID</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Milk (L/day)</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Weight Gain (kg/day)</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Breed Type</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Date</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Milk (L)</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Weight Gain (kg)</th>
                         <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Health Status</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-                    <tr class="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    <span class="text-sm font-bold">C1</span>
-                                </div>
-                                <span class="font-medium text-gray-900 dark:text-white">COW-001</span>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">32.5</td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">1.8</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700 ring-1 ring-green-600/20 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-800/30">
-                                Healthy
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    <span class="text-sm font-bold">C2</span>
-                                </div>
-                                <span class="font-medium text-gray-900 dark:text-white">COW-002</span>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">28.3</td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">1.5</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700 ring-1 ring-green-600/20 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-800/30">
-                                Healthy
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    <span class="text-sm font-bold">C3</span>
-                                </div>
-                                <span class="font-medium text-gray-900 dark:text-white">COW-003</span>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">24.7</td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">1.2</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-700 ring-1 ring-orange-600/20 dark:bg-orange-900/30 dark:text-orange-400 dark:ring-orange-800/30">
-                                At Risk
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                                    <span class="text-sm font-bold">C4</span>
-                                </div>
-                                <span class="font-medium text-gray-900 dark:text-white">COW-004</span>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">30.1</td>
-                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">1.6</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700 ring-1 ring-green-600/20 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-800/30">
-                                Healthy
-                            </span>
-                        </td>
-                    </tr>
+                    @if($individualPerformanceData->count() > 0)
+                        @foreach($individualPerformanceData as $index => $record)
+                            <tr class="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                                            <span class="text-sm font-bold">{{ $index + 1 }}</span>
+                                        </div>
+                                        <span class="font-medium text-gray-900 dark:text-white">{{ $record->herd_id }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ $record->breed_type }}</td>
+                                <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ \Carbon\Carbon::parse($record->date)->format('M d, Y') }}</td>
+                                <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ number_format($record->milk_production, 1) }}</td>
+                                <td class="px-6 py-4 text-gray-700 dark:text-gray-300">{{ number_format($record->weight_gain, 2) }}</td>
+                                <td class="px-6 py-4">
+                                    @if($record->health_status == 'healthy')
+                                        <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700 ring-1 ring-green-600/20 dark:bg-green-900/30 dark:text-green-400 dark:ring-green-800/30">
+                                            Healthy
+                                        </span>
+                                    @elseif($record->health_status == 'at-risk')
+                                        <span class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-700 ring-1 ring-orange-600/20 dark:bg-orange-900/30 dark:text-orange-400 dark:ring-orange-800/30">
+                                            At Risk
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700 ring-1 ring-red-600/20 dark:bg-red-900/30 dark:text-red-400 dark:ring-red-800/30">
+                                            Sick
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                                @if($searchAnimalId)
+                                    No records found for Animal ID: {{ $searchAnimalId }}
+                                @else
+                                    No records found. Start by adding herd data using the form above.
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -313,7 +524,7 @@
                         const milkChart = new window.Chart(milkCtx, {
                         type: 'line',
                         data: {
-                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            labels: {{ json_encode($labels) }},
                             datasets: [{
                                 label: 'Milk Production (L)',
                                 data: {{ json_encode($milkProductionData) }},
@@ -381,35 +592,19 @@
                     const weightCtx = weightCanvas.getContext('2d');
                     console.log('Creating weight chart...');
                     const weightChart = new window.Chart(weightCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            datasets: [{
-                                label: 'Weight Gain (kg)',
-                                data: {{ json_encode($weightGainData) }},
-                                backgroundColor: [
-                                    'rgba(6, 182, 212, 0.8)',
-                                    'rgba(34, 197, 94, 0.8)',
-                                    'rgba(234, 179, 8, 0.8)',
-                                    'rgba(239, 68, 68, 0.8)',
-                                    'rgba(168, 85, 247, 0.8)',
-                                    'rgba(249, 115, 22, 0.8)',
-                                    'rgba(156, 163, 175, 0.8)'
-                                ],
-                                borderColor: [
-                                    'rgba(6, 182, 212, 1)',
-                                    'rgba(34, 197, 94, 1)',
-                                    'rgba(234, 179, 8, 1)',
-                                    'rgba(239, 68, 68, 1)',
-                                    'rgba(168, 85, 247, 1)',
-                                    'rgba(249, 115, 22, 1)',
-                                    'rgba(156, 163, 175, 1)'
-                                ],
-                                borderWidth: 2,
-                                borderRadius: 6,
-                                borderSkipped: false
-                            }]
-                        },
+                    type: 'bar',
+                    data: {
+                        labels: {{ json_encode($labels) }},
+                        datasets: [{
+                            label: 'Weight Gain (kg)',
+                            data: {{ json_encode($weightGainData) }},
+                            backgroundColor: 'rgba(6, 182, 212, 0.8)',
+                            borderColor: 'rgba(6, 182, 212, 1)',
+                            borderWidth: 2,
+                            borderRadius: 6,
+                            borderSkipped: false
+                        }]
+                    },
                         options: {
                             responsive: true,
                             maintainAspectRatio: false,
