@@ -23,5 +23,16 @@ class HerdData extends Model
         'milk_production',
         'weight_gain',
         'health_status',
+        'date',
+        'breed_type',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'date' => 'date',
     ];
 }

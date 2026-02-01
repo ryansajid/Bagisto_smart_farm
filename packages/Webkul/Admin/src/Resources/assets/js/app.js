@@ -1,4 +1,4 @@
-/**
+ck/**
  * This will track all the images and fonts for publishing.
  */
 import.meta.glob(["../images/**", "../fonts/**"]);
@@ -7,6 +7,11 @@ import.meta.glob(["../images/**", "../fonts/**"]);
  * Main vue bundler.
  */
 import { createApp } from "vue/dist/vue.esm-bundler";
+
+/**
+ * Import main CSS file with icon classes.
+ */
+import '../css/app.css';
 
 /**
  * Main root application registry.

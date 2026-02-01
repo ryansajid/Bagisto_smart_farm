@@ -59,6 +59,7 @@ Route::group(['middleware' => ['admin', NoCacheMiddleware::class], 'prefix' => c
      * Herd Analytics routes.
      */
     Route::get('herd-analytics', [HerdAnalyticsController::class, 'index'])->name('admin.herd-analytics.index');
+    Route::post('herd-analytics', [HerdAnalyticsController::class, 'store'])->name('admin.herd-analytics.store');
 
     /**
      * Remaining routes.

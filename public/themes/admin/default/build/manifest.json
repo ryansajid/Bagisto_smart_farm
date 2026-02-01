@@ -264,7 +264,7 @@
     "isDynamicEntry": true
   },
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-DxbqLJkj.css",
+    "file": "assets/app-fyMiDHh8.css",
     "src": "src/Resources/assets/css/app.css",
     "isEntry": true
   },
@@ -445,7 +445,7 @@
     "src": "src/Resources/assets/images/unpaid-invoices.svg"
   },
   "src/Resources/assets/js/app.js": {
-    "file": "assets/app-DyeG4eav.js",
+    "file": "assets/app-zFbMyjQR.js",
     "name": "app",
     "src": "src/Resources/assets/js/app.js",
     "isEntry": true,
@@ -496,7 +496,11 @@
       "node_modules/vue-cal/dist/drag-and-drop.es.js"
     ],
     "css": [
-      "assets/app-C2Wq9G4i.css"
+      "assets/app-C2Wq9G4i.css",
+      "assets/app-fyMiDHh8.css"
+    ],
+    "assets": [
+      "assets/bagisto-admin-BzOkv6lg.woff"
     ]
   },
   "src/Resources/assets/js/chart.js": {

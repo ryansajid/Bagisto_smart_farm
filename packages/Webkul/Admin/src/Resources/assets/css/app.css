@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
     font-family: "bagisto-admin";
     src: url("../fonts/bagisto-admin.woff?jwnnow") format("woff");
@@ -9,6 +5,10 @@
     font-style: normal;
     font-display: block;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer components {
     ::selection {
@@ -67,332 +67,6 @@
         @apply border-[1px] dark:border-gray-800 shadow-[0px_0px_0px_0px_rgba(0,0,0,0.03),0px_1px_1px_0px_rgba(0,0,0,0.03),0px_3px_3px_0px_rgba(0,0,0,0.03),0px_6px_4px_0px_rgba(0,0,0,0.02),0px_11px_4px_0px_rgba(0,0,0,0.00),0px_17px_5px_0px_rgba(0,0,0,0.00)];
     }
 
-    .icon-phone:before {
-        content: "\e94f";
-    }
-
-    .icon-list:before {
-        content: "\e950";
-    }
-
-    .icon-admin-export:before {
-        content: "\e95d";
-    }
-
-    .icon-magic:before {
-        content: "\e94b";
-    }
-
-    .icon-zoom:before {
-        content: "\e94c";
-    }
-
-    .icon-ar:before {
-        content: "\e94a";
-    }
-
-    .icon-report:before {
-        content: "\e942";
-    }
-
-    .icon-refund:before {
-        content: "\e948";
-    }
-
-    .icon-light:before {
-        content: "\e947";
-    }
-
-    .icon-dark:before {
-        content: "\e949";
-    }
-
-    .icon-checkbox-partical:before {
-        content: "\e900";
-    }
-
-    .icon-uncheckbox:before {
-        content: "\e901";
-    }
-
-    .icon-add-customer:before {
-        content: "\e902";
-    }
-
-    .icon-arrow-down:before {
-        content: "\e903";
-    }
-
-    .icon-arrow-left:before {
-        content: "\e904";
-    }
-
-    .icon-arrow-right:before {
-        content: "\e905";
-    }
-
-    .icon-arrow-up:before {
-        content: "\e906";
-    }
-
-    .icon-attribute-block:before {
-        content: "\e907";
-    }
-
-    .icon-attribute:before {
-        content: "\e908";
-    }
-
-    .icon-calendar:before {
-        content: "\e909";
-    }
-
-    .icon-cancel-1:before {
-        content: "\e90a";
-    }
-
-    .icon-cancel:before {
-        content: "\e90b";
-    }
-
-    .icon-cart:before {
-        content: "\e90c";
-    }
-
-    .icon-checked:before {
-        content: "\e90d";
-    }
-
-    .icon-cms:before {
-        content: "\e90e";
-    }
-
-    .icon-configuration:before {
-        content: "\e90f";
-    }
-
-    .icon-cross:before {
-        content: "\e910";
-    }
-
-    .icon-customer-2:before {
-        content: "\e911";
-    }
-
-    .icon-customer:before {
-        content: "\e912";
-    }
-
-    .icon-dashboard:before {
-        content: "\e913";
-    }
-
-    .icon-delete:before {
-        content: "\e914";
-    }
-
-    .icon-done:before {
-        content: "\e915";
-    }
-
-    .icon-dot:before {
-        content: "\e916";
-    }
-
-    .icon-dots:before {
-        content: "\e917";
-    }
-
-    .icon-down-stat:before {
-        content: "\e918";
-    }
-
-    .icon-drag:before {
-        content: "\e919";
-    }
-
-    .icon-edit-save:before {
-        content: "\e91a";
-    }
-
-    .icon-edit:before {
-        content: "\e91b";
-    }
-
-    .icon-filter:before {
-        content: "\e91c";
-    }
-
-    .icon-folder-block:before {
-        content: "\e91d";
-    }
-
-    .icon-folder:before {
-        content: "\e91e";
-    }
-
-    .icon-image:before {
-        content: "\e91f";
-    }
-
-    .icon-information:before {
-        content: "\e920";
-    }
-
-    .icon-language:before {
-        content: "\e921";
-    }
-
-    .icon-location:before {
-        content: "\e922";
-    }
-
-    .icon-mail:before {
-        content: "\e923";
-    }
-
-    .icon-menu:before {
-        content: "\e924";
-    }
-
-    .icon-notification:before {
-        content: "\e925";
-    }
-
-    .icon-order-back:before {
-        content: "\e926";
-    }
-
-    .icon-printer:before {
-        content: "\e927";
-    }
-
-    .icon-processing:before {
-        content: "\e928";
-    }
-
-    .icon-product-1:before {
-        content: "\e929";
-    }
-
-    .icon-product:before {
-        content: "\e92a";
-    }
-
-    .icon-promotion:before {
-        content: "\e92b";
-    }
-
-    .icon-radio-normal:before {
-        content: "\e92c";
-    }
-
-    .icon-radio-selected:before {
-        content: "\e92d";
-    }
-
-    .icon-repeat:before {
-        content: "\e92e";
-    }
-
-    .icon-sales:before {
-        content: "\e92f";
-    }
-
-    .icon-search:before {
-        content: "\e930";
-    }
-
-    .icon-setting:before {
-        content: "\e931";
-    }
-
-    .icon-settings:before {
-        content: "\e932";
-    }
-
-    .icon-ship:before {
-        content: "\e933";
-    }
-
-    .icon-sort-down:before {
-        content: "\e934";
-    }
-
-    .icon-sort-left:before {
-        content: "\e935";
-    }
-
-    .icon-sort-right:before {
-        content: "\e936";
-    }
-
-    .icon-sort-up-down:before {
-        content: "\e937";
-    }
-
-    .icon-sort-up:before {
-        content: "\e938";
-    }
-
-    .icon-star:before {
-        content: "\e939";
-    }
-
-    .icon-store:before {
-        content: "\e93a";
-    }
-
-    .icon-tick:before {
-        content: "\e93b";
-    }
-
-    .icon-up-stat:before {
-        content: "\e93c";
-    }
-
-    .icon-view:before {
-        content: "\e93d";
-    }
-
-    .icon-view-close:before {
-        content: "\e946";
-    }
-
-    .icon-copy:before {
-        content: "\e93e";
-    }
-
-    .icon-exit:before {
-        content: "\e93f";
-    }
-
-    .icon-clip:before {
-        content: "\e940";
-    }
-
-    .icon-collapse:before {
-        content: "\e941";
-    }
-
-    .icon-login:before {
-        content: "\e943";
-    }
-
-    .icon-pause:before {
-        content: "\e944";
-    }
-
-    .icon-play:before {
-        content: "\e945";
-    }
-      
-    p {
-        @apply text-[14px] !leading-[17px];
-    }
-
-    input,
-    textarea,
     select {
         @apply outline-none;
     }
@@ -541,6 +215,527 @@
     .CodeMirror {
         @apply !h-[calc(100vh-367px)]
     }
+}
+
+/* Icon classes */
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: "bagisto-admin" !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    color: #6b7280;
+    
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1 !important;
+}
+
+html.dark [class^="icon-"],
+html.dark [class*=" icon-"]{
+    color: #d1d5db;
+}
+
+/* Fix for SVG icons in dashboard and other views */
+svg {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: visible;
+}
+
+/* Force all SVG paths to be visible */
+svg path {
+    display: block;
+    stroke-width: 2;
+}
+
+/* Ensure all SVGs with stroke are visible */
+svg[stroke] {
+    stroke: currentColor !important;
+}
+
+/* Universal fix for all SVGs - ensure they're visible and colored */
+svg {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Specific fix for SVGs with stroke="currentColor" */
+svg[stroke="currentColor"] path {
+    stroke: currentColor !important;
+}
+
+/* Override any potential Tailwind or other CSS that might hide SVGs */
+svg[stroke="currentColor"] {
+    stroke: currentColor !important;
+    color: inherit !important;
+}
+
+/* Ensure SVGs have proper dimensions */
+svg.h-5 {
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+}
+
+svg.h-6 {
+    height: 1.5rem !important;
+    width: 1.5rem !important;
+}
+
+svg.h-7 {
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+}
+
+svg.h-8 {
+    height: 2rem !important;
+    width: 2rem !important;
+}
+
+svg.h-12 {
+    height: 3rem !important;
+    width: 3rem !important;
+}
+
+svg.h-24 {
+    height: 6rem !important;
+    width: 6rem !important;
+}
+
+svg.w-5 {
+    width: 1.25rem !important;
+}
+
+svg.w-6 {
+    width: 1.5rem !important;
+}
+
+svg.w-7 {
+    width: 1.75rem !important;
+}
+
+svg.w-8 {
+    width: 2rem !important;
+}
+
+svg.w-12 {
+    width: 3rem !important;
+}
+
+svg.w-24 {
+    width: 6rem !important;
+}
+
+/* Force specific colors for icons with text color classes */
+.text-white svg[stroke="currentColor"] {
+    stroke: #ffffff !important;
+}
+
+.text-green-600 svg[stroke="currentColor"] {
+    stroke: #16a34a !important;
+}
+
+.text-green-400 svg[stroke="currentColor"] {
+    stroke: #4ade80 !important;
+}
+
+.text-blue-600 svg[stroke="currentColor"] {
+    stroke: #2563eb !important;
+}
+
+.text-blue-400 svg[stroke="currentColor"] {
+    stroke: #60a5fa !important;
+}
+
+.text-cyan-600 svg[stroke="currentColor"] {
+    stroke: #0891b2 !important;
+}
+
+.text-cyan-400 svg[stroke="currentColor"] {
+    stroke: #22d3ee !important;
+}
+
+.text-orange-600 svg[stroke="currentColor"] {
+    stroke: #ea580c !important;
+}
+
+.text-orange-400 svg[stroke="currentColor"] {
+    stroke: #fb923c !important;
+}
+
+.text-red-600 svg[stroke="currentColor"] {
+    stroke: #dc2626 !important;
+}
+
+.text-red-400 svg[stroke="currentColor"] {
+    stroke: #f87171 !important;
+}
+
+.text-gray-400 svg[stroke="currentColor"] {
+    stroke: #9ca3af !important;
+}
+
+.text-indigo-600 svg[stroke="currentColor"] {
+    stroke: #4f46e5 !important;
+}
+
+/* Icons inside gradient backgrounds should be white */
+.from-green-500 svg[stroke="currentColor"],
+.from-green-600 svg[stroke="currentColor"],
+.from-blue-500 svg[stroke="currentColor"],
+.from-blue-600 svg[stroke="currentColor"],
+.from-cyan-500 svg[stroke="currentColor"],
+.from-cyan-600 svg[stroke="currentColor"],
+.from-orange-500 svg[stroke="currentColor"],
+.from-orange-600 svg[stroke="currentColor"],
+.from-red-500 svg[stroke="currentColor"],
+.from-red-600 svg[stroke="currentColor"] {
+    stroke: #ffffff !important;
+}
+
+.dark .from-green-400 svg[stroke="currentColor"],
+.dark .from-green-500 svg[stroke="currentColor"],
+.dark .from-blue-400 svg[stroke="currentColor"],
+.dark .from-blue-500 svg[stroke="currentColor"],
+.dark .from-cyan-400 svg[stroke="currentColor"],
+.dark .from-cyan-500 svg[stroke="currentColor"],
+.dark .from-orange-400 svg[stroke="currentColor"],
+.dark .from-orange-500 svg[stroke="currentColor"],
+.dark .from-red-400 svg[stroke="currentColor"],
+.dark .from-red-500 svg[stroke="currentColor"] {
+    stroke: #ffffff !important;
+}
+
+.icon-phone:before {
+    content: "\e94f";
+}
+
+.icon-list:before {
+    content: "\e950";
+}
+
+.icon-admin-export:before {
+    content: "\e95d";
+}
+
+.icon-magic:before {
+    content: "\e94b";
+}
+
+.icon-zoom:before {
+    content: "\e94c";
+}
+
+.icon-ar:before {
+    content: "\e94a";
+}
+
+.icon-report:before {
+    content: "\e942";
+}
+
+.icon-refund:before {
+    content: "\e948";
+}
+
+.icon-light:before {
+    content: "\e947";
+}
+
+.icon-dark:before {
+    content: "\e949";
+}
+
+.icon-checkbox-partical:before {
+    content: "\e900";
+}
+
+.icon-uncheckbox:before {
+    content: "\e901";
+}
+
+.icon-add-customer:before {
+    content: "\e902";
+}
+
+.icon-arrow-down:before {
+    content: "\e903";
+}
+
+.icon-arrow-left:before {
+    content: "\e904";
+}
+
+.icon-arrow-right:before {
+    content: "\e905";
+}
+
+.icon-arrow-up:before {
+    content: "\e906";
+}
+
+.icon-attribute-block:before {
+    content: "\e907";
+}
+
+.icon-attribute:before {
+    content: "\e908";
+}
+
+.icon-calendar:before {
+    content: "\e909";
+}
+
+.icon-cancel-1:before {
+    content: "\e90a";
+}
+
+.icon-cancel:before {
+    content: "\e90b";
+}
+
+.icon-cart:before {
+    content: "\e90c";
+}
+
+.icon-checked:before {
+    content: "\e90d";
+}
+
+.icon-cms:before {
+    content: "\e90e";
+}
+
+.icon-configuration:before {
+    content: "\e90f";
+}
+
+.icon-cross:before {
+    content: "\e910";
+}
+
+.icon-customer-2:before {
+    content: "\e911";
+}
+
+.icon-customer:before {
+    content: "\e912";
+}
+
+.icon-dashboard:before {
+    content: "\e913";
+}
+
+.icon-delete:before {
+    content: "\e914";
+}
+
+.icon-done:before {
+    content: "\e915";
+}
+
+.icon-dot:before {
+    content: "\e916";
+}
+
+.icon-dots:before {
+    content: "\e917";
+}
+
+.icon-down-stat:before {
+    content: "\e918";
+}
+
+.icon-drag:before {
+    content: "\e919";
+}
+
+.icon-edit-save:before {
+    content: "\e91a";
+}
+
+.icon-edit:before {
+    content: "\e91b";
+}
+
+.icon-filter:before {
+    content: "\e91c";
+}
+
+.icon-folder-block:before {
+    content: "\e91d";
+}
+
+.icon-folder:before {
+    content: "\e91e";
+}
+
+.icon-image:before {
+    content: "\e91f";
+}
+
+.icon-information:before {
+    content: "\e920";
+}
+
+.icon-language:before {
+    content: "\e921";
+}
+
+.icon-location:before {
+    content: "\e922";
+}
+
+.icon-mail:before {
+    content: "\e923";
+}
+
+.icon-menu:before {
+    content: "\e924";
+}
+
+.icon-notification:before {
+    content: "\e925";
+}
+
+.icon-order-back:before {
+    content: "\e926";
+}
+
+.icon-printer:before {
+    content: "\e927";
+}
+
+.icon-processing:before {
+    content: "\e928";
+}
+
+.icon-product-1:before {
+    content: "\e929";
+}
+
+.icon-product:before {
+    content: "\e92a";
+}
+
+.icon-promotion:before {
+    content: "\e92b";
+}
+
+.icon-radio-normal:before {
+    content: "\e92c";
+}
+
+.icon-radio-selected:before {
+    content: "\e92d";
+}
+
+.icon-repeat:before {
+    content: "\e92e";
+}
+
+.icon-sales:before {
+    content: "\e92f";
+}
+
+.icon-search:before {
+    content: "\e930";
+}
+
+.icon-setting:before {
+    content: "\e931";
+}
+
+.icon-settings:before {
+    content: "\e932";
+}
+
+.icon-ship:before {
+    content: "\e933";
+}
+
+.icon-sort-down:before {
+    content: "\e934";
+}
+
+.icon-sort-left:before {
+    content: "\e935";
+}
+
+.icon-sort-right:before {
+    content: "\e936";
+}
+
+.icon-sort-up-down:before {
+    content: "\e937";
+}
+
+.icon-sort-up:before {
+    content: "\e938";
+}
+
+.icon-star:before {
+    content: "\e939";
+}
+
+.icon-store:before {
+    content: "\e93a";
+}
+
+.icon-tick:before {
+    content: "\e93b";
+}
+
+.icon-up-stat:before {
+    content: "\e93c";
+}
+
+.icon-view:before {
+    content: "\e93d";
+}
+
+.icon-view-close:before {
+    content: "\e946";
+}
+
+.icon-copy:before {
+    content: "\e93e";
+}
+
+.icon-exit:before {
+    content: "\e93f";
+}
+
+.icon-clip:before {
+    content: "\e940";
+}
+
+.icon-collapse:before {
+    content: "\e941";
+}
+
+.icon-login:before {
+    content: "\e943";
+}
+
+.icon-pause:before {
+    content: "\e944";
+}
+
+.icon-play:before {
+    content: "\e945";
+}
+
+.icon-star-fill:before {
+    content: "\e938";
+    color: #ffb600;
 }
 
 .tox .tox-toolbar__group:last-child button {

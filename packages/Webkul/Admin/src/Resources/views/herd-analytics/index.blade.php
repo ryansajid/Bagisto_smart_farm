@@ -92,19 +92,18 @@
                         @enderror
                     </div>
 
-                    <!-- Milk Collected -->
+                    <!-- Milk Production -->
                     <div>
                         <label for="milk_production" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Milk Collected (Liters)
+                            Milk Production (Liters)
                         </label>
                         <input
                             type="number"
                             id="milk_production"
                             name="milk_production"
-                            required
-                            min="0"
                             step="0.1"
-                            placeholder="e.g., 32.5"
+                            required
+                            placeholder="e.g., 25.5"
                             class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
                         >
                         @error('milk_production')
@@ -194,7 +193,7 @@
                 </div>
                 <div class="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Overall Herd Health</div>
                 <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                    @if($herdData->where('health_status', 'healthy')->count() > 0)
+                    @if($filteredData->where('health_status', 'healthy')->count() > 0)
                         <span class="text-green-600 dark:text-green-400">Good</span>
                     @else
                         <span class="text-orange-600 dark:text-orange-400">Needs Attention</span>
@@ -214,7 +213,7 @@
                 </div>
                 <div class="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Avg. Daily Milk Production</div>
                 <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                    {{ number_format($herdData->avg('milk_production'), 1) }} <span class="text-base font-normal text-gray-500">L</span>
+                    {{ number_format($filteredData->avg('milk_production'), 1) }} <span class="text-base font-normal text-gray-500">L</span>
                 </div>
             </div>
         </div>
@@ -230,7 +229,7 @@
                 </div>
                 <div class="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Weight Gain Rate</div>
                 <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                    {{ number_format($herdData->avg('weight_gain'), 2) }} <span class="text-base font-normal text-gray-500">kg/day</span>
+                    {{ number_format($filteredData->avg('weight_gain') ?: 0, 2) }} <span class="text-base font-normal text-gray-500">kg/day</span>
                 </div>
             </div>
         </div>
@@ -247,10 +246,10 @@
                 <div class="mb-1 text-sm font-medium text-gray-500 dark:text-gray-400">Calving Rate</div>
                 <div class="text-2xl font-bold text-gray-900 dark:text-white">
                     @php
-                        $healthyCount = $herdData->where('health_status', 'healthy')->count();
-                        $atRiskCount = $herdData->where('health_status', 'at-risk')->count();
-                        $sickCount = $herdData->where('health_status', 'sick')->count();
-                        $totalCount = $herdData->count();
+                        $healthyCount = $filteredData->where('health_status', 'healthy')->count();
+                        $atRiskCount = $filteredData->where('health_status', 'at-risk')->count();
+                        $sickCount = $filteredData->where('health_status', 'sick')->count();
+                        $totalCount = $filteredData->count();
                         $calvingRate = $totalCount > 0 ? round(($healthyCount / $totalCount) * 100, 1) : 0;
                     @endphp
                     {{ $calvingRate }}<span class="text-base font-normal text-gray-500">%</span>
@@ -309,44 +308,82 @@
         </div>
     </div>
 
-    <!-- Charts Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Milk Production Chart -->
+    <!-- Milk Production Chart -->
+    <div class="mb-8">
         <div class="box-shadow rounded-2xl bg-white p-6 dark:bg-gray-900">
             <div class="mb-6 flex items-center justify-between">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Milk Production</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Daily milk output in liters</p>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Milk Production (Last 30 Days)</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Daily milk production in liters</p>
                 </div>
-                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3-3M4 17l3-3 3-3m-3 3h14"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="h-[280px] w-full">
-                <canvas id="milkProductionChart"></canvas>
-            </div>
-        </div>
-
-        <!-- Weight Gain Chart -->
-        <div class="box-shadow rounded-2xl bg-white p-6 dark:bg-gray-900">
-            <div class="mb-6 flex items-center justify-between">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Weight Gain</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Daily weight gain in kg</p>
-                </div>
-                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-400">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-600/20 dark:bg-blue-900/30 dark:text-blue-400 dark:ring-blue-800/30">
+                        {{ \Carbon\Carbon::createFromDate($selectedYear, $selectedMonth, 1)->format('F Y') }}
+                    </span>
                 </div>
             </div>
-            <div class="h-[280px] w-full">
-                <canvas id="weightGainChart"></canvas>
+            
+            <!-- Chart Container - CSS Only Bar Chart -->
+            <div class="relative" style="height: 350px; border-bottom: 1px solid #e5e7eb; border-left: 1px solid #e5e7eb;">
+                @php
+                    $maxValue = !empty($milkProductionData) ? max($milkProductionData) : 100;
+                    $maxY = max(100, ceil($maxValue / 10) * 10);
+                @endphp
+                
+                <!-- Y-Axis Labels -->
+                <div class="absolute left-0 top-0 bottom-0 w-16 flex flex-col justify-between text-xs text-gray-500 dark:text-gray-400 text-right pr-2 py-2" style="background: white; z-index: 10;">
+                    <span>{{ number_format($maxY, 0) }}</span>
+                    <span>{{ number_format($maxY * 0.75, 0) }}</span>
+                    <span>{{ number_format($maxY * 0.5, 0) }}</span>
+                    <span>{{ number_format($maxY * 0.25, 0) }}</span>
+                    <span>0</span>
+                </div>
+                
+                <!-- Chart Area -->
+                <div class="absolute left-16 right-0 top-0 bottom-0 flex items-end px-2" style="gap: 4px;">
+                    @foreach($milkProductionData as $index => $value)
+                        @php
+                            $height = ($value / $maxY) * 100;
+                            $height = is_numeric($height) ? $height : 0;
+                            $day = $index + 1;
+                            $fullDate = \Carbon\Carbon::createFromDate($selectedYear, $selectedMonth, $day)->format('M d, Y');
+                        @endphp
+                        <div 
+                            class="bg-blue-600 rounded-t transition-all duration-200 hover:bg-blue-700 cursor-pointer"
+                            style="width: calc(3.33% - 3px); height: {{ $height }}%; min-height: {{ $height > 0 ? '2px' : '0' }};"
+                            title="{{ $fullDate }}: {{ number_format($value, 1) }} Liters"
+                        ></div>
+                    @endforeach
+                </div>
+                
+                <!-- Grid Lines -->
+                <div class="absolute left-16 right-0 top-0 bottom-0 pointer-events-none">
+                    <div class="absolute bottom-0 w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="absolute bottom-[25%] w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="absolute bottom-[50%] w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="absolute bottom-[75%] w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="absolute top-0 w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+                </div>
+            </div>
+            
+            <!-- X-Axis Labels -->
+            <div class="flex justify-between px-16 text-xs text-gray-500 dark:text-gray-400 mt-2">
+                <span>Day 1</span>
+                <span>Day 15</span>
+                <span>Day 30</span>
+            </div>
+            
+            <!-- Legend -->
+            <div class="mt-6 flex items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <div class="flex items-center gap-2">
+                    <div class="h-4 w-4 rounded bg-gradient-to-t from-blue-600 to-blue-400"></div>
+                    <span>Milk Production (Liters)</span>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Herd Health Summary -->
 
     <!-- Herd Health Summary -->
     <div class="box-shadow mb-8 rounded-2xl bg-white p-6 dark:bg-gray-900">
@@ -357,9 +394,9 @@
             </div>
         </div>
         @php
-            $healthyCount = $herdData->where('health_status', 'healthy')->count();
-            $atRiskCount = $herdData->where('health_status', 'at-risk')->count();
-            $sickCount = $herdData->where('health_status', 'sick')->count();
+            $healthyCount = $filteredData->where('health_status', 'healthy')->count();
+            $atRiskCount = $filteredData->where('health_status', 'at-risk')->count();
+            $sickCount = $filteredData->where('health_status', 'sick')->count();
         @endphp
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div class="flex items-center gap-4 rounded-xl bg-green-50 p-4 ring-1 ring-green-100 dark:bg-green-900/10 dark:ring-green-800">
@@ -421,7 +458,7 @@
                 </button>
                 @if($searchAnimalId)
                     <a href="{{ route('admin.herd-analytics.index') }}" class="text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                    Clear
+                        Clear
                     </a>
                 @endif
             </form>
@@ -487,171 +524,10 @@
         </div>
     </div>
 
-    @pushOnce('scripts')
-        <script type="module" src="{{ bagisto_asset('js/chart.js') }}"></script>
-        <script type="module">
-            // Debug logging
-            console.log('=== HERD ANALYTICS DEBUG ===');
-            console.log('Chart object available:', typeof window.Chart !== 'undefined');
-            console.log('Milk canvas element:', document.getElementById('milkProductionChart'));
-            console.log('Weight canvas element:', document.getElementById('weightGainChart'));
-            console.log('Milk data:', {{ json_encode($milkProductionData ?? []) }});
-            console.log('Weight data:', {{ json_encode($weightGainData ?? []) }});
-
-            // Wait for DOM and Chart to be available
-            document.addEventListener('DOMContentLoaded', function() {
-                console.log('DOM loaded');
-                console.log('Chart after DOM load:', typeof window.Chart !== 'undefined');
-
-                if (typeof window.Chart === 'undefined') {
-                    console.error('Chart is still not available!');
-                    return;
-                }
-
-                // Wait a bit for Vue app to mount
-                setTimeout(function() {
-                    console.log('Creating charts after Vue mount delay...');
-
-                    try {
-                        // Milk Production Line Chart
-                        const milkCanvas = document.getElementById('milkProductionChart');
-                        if (!milkCanvas) {
-                            console.error('milkProductionChart canvas not found');
-                            return;
-                        }
-                        const milkCtx = milkCanvas.getContext('2d');
-                        console.log('Creating milk chart...');
-                        const milkChart = new window.Chart(milkCtx, {
-                        type: 'line',
-                        data: {
-                            labels: {{ json_encode($labels) }},
-                            datasets: [{
-                                label: 'Milk Production (L)',
-                                data: {{ json_encode($milkProductionData) }},
-                                borderColor: '#22c55e',
-                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                                fill: true,
-                                tension: 0.4,
-                                borderWidth: 3,
-                                pointBackgroundColor: '#22c55e',
-                                pointBorderColor: '#ffffff',
-                                pointBorderWidth: 2,
-                                pointRadius: 5,
-                                pointHoverRadius: 7
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12,
-                                            weight: 500
-                                        }
-                                    }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    grid: {
-                                        color: 'rgba(0, 0, 0, 0.05)'
-                                    },
-                                    ticks: {
-                                        font: {
-                                            size: 11
-                                        }
-                                    }
-                                },
-                                x: {
-                                    grid: {
-                                        display: false
-                                    },
-                                    ticks: {
-                                        font: {
-                                            size: 11
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Milk chart created successfully');
-
-                    // Weight Gain Bar Chart
-                    const weightCanvas = document.getElementById('weightGainChart');
-                    if (!weightCanvas) {
-                        console.error('weightGainChart canvas not found');
-                        return;
-                    }
-                    const weightCtx = weightCanvas.getContext('2d');
-                    console.log('Creating weight chart...');
-                    const weightChart = new window.Chart(weightCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: {{ json_encode($labels) }},
-                        datasets: [{
-                            label: 'Weight Gain (kg)',
-                            data: {{ json_encode($weightGainData) }},
-                            backgroundColor: 'rgba(6, 182, 212, 0.8)',
-                            borderColor: 'rgba(6, 182, 212, 1)',
-                            borderWidth: 2,
-                            borderRadius: 6,
-                            borderSkipped: false
-                        }]
-                    },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    labels: {
-                                        usePointStyle: true,
-                                        padding: 20,
-                                        font: {
-                                            size: 12,
-                                            weight: 500
-                                        }
-                                    }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    grid: {
-                                        color: 'rgba(0, 0, 0, 0.05)'
-                                    },
-                                    ticks: {
-                                        font: {
-                                            size: 11
-                                        }
-                                    }
-                                },
-                                x: {
-                                    grid: {
-                                        display: false
-                                    },
-                                    ticks: {
-                                        font: {
-                                            size: 11
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Weight chart created successfully');
-                    } catch (error) {
-                        console.error('Error creating charts:', error);
-                    }
-                }, 500);
-            });
+    @push('scripts')
+        <script>
+            // CSS-only bar chart - hover over bars to see values
+            console.log('Milk Production Chart loaded successfully');
         </script>
-    @endPushOnce
+    @endpush
 </x-admin::layouts>

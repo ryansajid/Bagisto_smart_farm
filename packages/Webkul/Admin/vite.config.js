@@ -36,13 +36,5 @@ export default defineConfig(({ mode }) => {
                 refresh: true,
             }),
         ],
-
-        experimental: {
-            renderBuiltUrl(filename, { hostId, hostType, type }) {
-                if (hostType === "css") {
-                    return path.basename(filename);
-                }
-            },
-        },
     };
 });
